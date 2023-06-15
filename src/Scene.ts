@@ -25,6 +25,7 @@ export class Scene extends Container{
             Texture.from("DinoRun10"),
             Texture.from("DinoRun11"),
             Texture.from("DinoRun12"),
+            Texture.from("DinoRun13"),
             Texture.from("DinoRun17"),
             Texture.from("DinoRun18"),
             Texture.from("DinoRun19"),
@@ -34,6 +35,7 @@ export class Scene extends Container{
             Texture.from("DinoRun23"),             
         ],true
         )
+        dinoAnimated.scale.set(10);
         dinoAnimated.position.set(100);
         dinoAnimated.play();
         dinoAnimated.animationSpeed = 0.25;

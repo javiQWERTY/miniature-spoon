@@ -1,14 +1,17 @@
-import { Application, Assets} from 'pixi.js'
+import { Application, Assets, BaseTexture, SCALE_MODES, settings} from 'pixi.js'
 import { assets } from './assets';
 import { Scene } from './Scene';
+
+settings.ROUND_PIXELS = true;
+BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST;
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x6495ed,
-	width: 640,
-	height: 320
+	width: 1260,
+	height: 720
 });
 
 window.addEventListener("resize", () => {
