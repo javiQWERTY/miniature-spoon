@@ -1,12 +1,14 @@
-import { Application, Assets, Container, Sprite} from 'pixi.js'
+import { Application, Assets} from 'pixi.js'
+import { assets } from './assets';
+import { Scene } from './Scene';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x6495ed,
-	width: 1280,
-	height: 720
+	width: 640,
+	height: 320
 });
 
 window.addEventListener("resize", () => {
@@ -39,25 +41,13 @@ window.addEventListener("resize", () => {
 })
 window.dispatchEvent(new Event("resize"));
 
-Assets.add("Clampy", "/clampy.png");
+/*Assets.add("Clampy", "/clampy.png");
 Assets.add("myDino", "/dino.png");
-Assets.add("dinoHat", "/dinohat.png");
+Assets.add("dinoHat", "/dinohat.png");*/
 
-Assets.load(["Clampy", "myDino", "Hat"]).then(()=>{
-const dino: Sprite = Sprite.from("dino.png");
+Assets.addBundle("myAssets", assets);
+Assets.loadBundle(["myAssets"]).then(()=>{
 
-const hat: Sprite = Sprite.from("dinohat.png");
-
-hat.position.set(90, -100);
-
-//Creacion de un contenedor para el dino/hat.
-const dinoWithHat: Container = new Container();
-
-dinoWithHat.addChild(dino);
-dinoWithHat.addChild(hat);
-
-dinoWithHat.scale.set(0.5);
-dinoWithHat.position.set(100)
-
-app.stage.addChild(dinoWithHat);
+	const myScene = new Scene();
+	app.stage.addChild(myScene);
 })
