@@ -1,6 +1,7 @@
 import { Application, Assets, BaseTexture, SCALE_MODES, settings} from 'pixi.js'
+import { SceneMenu } from './Scenes/SceneMenu';
 import { assets } from './assets';
-import { Scene } from './Scene';
+import { Scene } from './Scenes/Scene';
 
 settings.ROUND_PIXELS = true;
 BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST;
@@ -10,7 +11,7 @@ const app = new Application({
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x6495ed,
-	width: 1260,
+	width: 1280,
 	height: 720
 });
 
@@ -44,13 +45,15 @@ window.addEventListener("resize", () => {
 })
 window.dispatchEvent(new Event("resize"));
 
-/*Assets.add("Clampy", "/clampy.png");
+Assets.add("Clampy", "/clampy.png");
 Assets.add("myDino", "/dino.png");
-Assets.add("dinoHat", "/dinohat.png");*/
+Assets.add("dinoHat", "/dinohat.png");
 
 Assets.addBundle("myAssets", assets);
 Assets.loadBundle(["myAssets"]).then(()=>{
 
 	const myScene = new Scene();
+	const myMenuScene = new SceneMenu();
 	app.stage.addChild(myScene);
+	app.stage.addChild(myMenuScene);
 })
